@@ -12,7 +12,8 @@ class FeedbackOptions extends React.Component {
           <li>
             {statisticsFields.map(stat => (
               <p>
-                {stat.name}:<span></span>
+                {stat.name.charAt(0).toUpperCase() + stat.name.slice(1)}:
+                <span></span>
               </p>
             ))}
           </li>
