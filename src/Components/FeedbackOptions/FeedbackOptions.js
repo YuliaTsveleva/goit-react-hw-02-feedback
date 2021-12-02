@@ -6,17 +6,17 @@ import s from './FeedbackOptions.module.css';
 const FeedbackOptions = ({ options, onLeaveFeedback }) => {
   return (
     <>
-      <h1>Please leave feedback</h1>
       <ul className={s.FeedbackButtonList}>
         {options.map(elem => {
+          const name = elem.name.charAt(0).toUpperCase() + elem.name.slice(1);
           return (
-            <li key={elem.id}>
+            <li key={elem.id} className={s.FeedbackListItem}>
               <button
                 type="button"
                 onClick={onLeaveFeedback}
-                className={s.FeedbackButton}
+                className={s[name]}
               >
-                {elem.name}
+                {name}
               </button>
             </li>
           );
@@ -29,6 +29,11 @@ const FeedbackOptions = ({ options, onLeaveFeedback }) => {
 export default FeedbackOptions;
 
 FeedbackOptions.propTypes = {
-  options: PropTypes.arrayOf(Object).isRequired,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
   onLeaveFeedback: PropTypes.func.isRequired,
 };
